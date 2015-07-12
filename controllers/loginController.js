@@ -24,7 +24,7 @@ exports.signup = function (req, res) {
 };
 
 // route middleware to make sure a user is logged in
-exports.loggedIn = function (req, res, next) {
+exports.ensureAuthenticated = function (req, res, next) {
 
 	// if user is authenticated in the session, carry on 
 	if (req.isAuthenticated()) {
@@ -43,5 +43,6 @@ exports.profile = function (req, res) {
 // GET /logout
 exports.logout = function (req, res) {
 	req.logout();
+	console.log('User logged out');
 	res.redirect('/');
 };
