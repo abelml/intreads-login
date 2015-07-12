@@ -2,7 +2,6 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = function (sequelize, DataTypes) {
 	return sequelize.define('local', {
-		id: DataTypes.UUID,
 		username: DataTypes.STRING,
 		password: DataTypes.STRING
 	}, {

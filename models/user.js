@@ -23,9 +23,9 @@ var sequelize = new Sequelize(DB_name, user, pwd, {
 });
 
 var dirname = path.resolve(path.dirname());
-var Local = sequelize.import(path.join(dirname, 'models/local.js'));
 
-exports.Local = Local;
+exports.Local = sequelize.import(path.join(dirname, 'models/local.js'));
+exports.Google = sequelize.import(path.join(dirname, 'models/google.js'));
 
 sequelize.sync().then(function () {
 	console.log('DB initialized');
