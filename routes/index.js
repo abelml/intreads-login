@@ -58,4 +58,16 @@ router.get('/auth/google/callback',
 	}
 );
 
+
+// route for twitter authentication and login
+router.get('/auth/twitter', pass.authenticate('twitter'));
+
+// handle the callback after twitter has authenticated the user
+router.get('/auth/twitter/callback',
+	pass.authenticate('twitter', {
+		successRedirect: '/profile',
+		failureRedirect: '/'
+	})
+);
+
 module.exports = router;
