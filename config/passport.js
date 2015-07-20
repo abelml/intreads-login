@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
 
 var configAuth = require('./auth.js');
 var User = require('../models/user.js');
@@ -106,6 +107,39 @@ passport.use('google-oauth',
 				});
 			}).catch(function (error) {
 				console.log('Google Oauth error: ' + error);
+				return done(error);
+			});
+		});
+	}
+));
+
+passport.use('twitter',
+	new TwitterStrategy({
+		consumerKey: configAuth.twitterAuth.consumerKey,
+		consumerSecret: configAuth.twitterAuth.consumerSecret,
+		callbackURL: configAuth.twitterAuth.callbackURL
+	},
+	function (token, tokenSecret, profile, done) {
+
+		// User.Twitter.find won't fire until we have all our data back from Google
+		process.nextTick(function () {
+
+			var params = {'id': profile.id};
+			User.Twitter.findOne(params).then(function (user) {
+				if (user) {
+					return done(null, user);	// if a user is found, log them in
+				}
+				User.Twitter.create({
+					id: profile.id,
+					token: token,
+					username: profile.userName,
+					displayName: profile.displayName,
+				}).then(function (user) {
+					console.log('Twitter user created: ' + profile.displayName);
+					return done(null, user);
+				});
+			}).catch(function (error) {
+				console.log('Twitter Oauth error: ' + error);
 				return done(error);
 			});
 		});
