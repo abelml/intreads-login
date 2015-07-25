@@ -5,8 +5,8 @@ console.log('Base URL: ' + baseUrl);
 module.exports = {
 
 	facebookAuth: {
-		clientID: 'your-secret-clientID-here',
-		clientSecret: 'your-client-secret-here',
+		clientID: '150079248657254',
+		clientSecret: 'c840f5290342edb51177e0ec921c5da4',
 		callbackURL: baseUrl + 'facebook/callback'
     },
 
