@@ -58,4 +58,26 @@ router.get('/auth/google/callback',
 	}
 );
 
+// Facebook routes
+
+router.get('/auth/facebook',
+	pass.authenticate('facebook', {
+		scope: ['email']
+	}),
+	function (req, res) {
+		console.log('Authenticating to Facebook...');
+	}
+);
+
+// handle the callback after facebook has authenticated the user
+router.get('/auth/facebook/callback',
+	pass.authenticate('facebook', {
+		successRedirect: '/profile',
+		failureRedirect: '/'
+	}),
+	function (req, res) {
+		console.log('Facebook login done!');
+	}
+);
+
 module.exports = router;
