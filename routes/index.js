@@ -34,6 +34,7 @@ router.post('/signup',
 	}
 );
 
+
 // Google routes
 
 // send to google to do the authentication
@@ -59,6 +60,8 @@ router.get('/auth/google/callback',
 );
 
 
+// Twitter routes
+
 // route for twitter authentication and login
 router.get('/auth/twitter', pass.authenticate('twitter'));
 
@@ -67,7 +70,33 @@ router.get('/auth/twitter/callback',
 	pass.authenticate('twitter', {
 		successRedirect: '/profile',
 		failureRedirect: '/'
-	})
+	}),
+	function (req, res) {
+		console.log('Twitter login done!');
+	}
+);
+
+
+// Facebook routes
+
+router.get('/auth/facebook',
+	pass.authenticate('facebook', {
+		scope: ['email']
+	}),
+	function (req, res) {
+		console.log('Authenticating to Facebook...');
+	}
+);
+
+// handle the callback after facebook has authenticated the user
+router.get('/auth/facebook/callback',
+	pass.authenticate('facebook', {
+		successRedirect: '/profile',
+		failureRedirect: '/'
+	}),
+	function (req, res) {
+		console.log('Facebook login done!');
+	}
 );
 
 module.exports = router;

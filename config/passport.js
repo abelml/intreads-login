@@ -2,6 +2,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var TwitterStrategy = require('passport-twitter').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var configAuth = require('./auth.js');
 var User = require('../models/user.js');
@@ -140,6 +141,40 @@ passport.use('twitter',
 				});
 			}).catch(function (error) {
 				console.log('Twitter Oauth error: ' + error);
+			});
+		});
+	}
+));
+
+passport.use(new FacebookStrategy({
+		clientID: configAuth.facebookAuth.clientID,
+		clientSecret: configAuth.facebookAuth.clientSecret,
+		callbackURL: configAuth.facebookAuth.callbackURL,
+		profileFields: ['displayName', 'emails']
+	},
+	function (token, refreshToken, profile, done) {
+
+		process.nextTick(function () {
+			var params = {'id': profile.id};
+			User.Facebook.findOne(params).then(function (user) {
+
+				if (user) {
+					return done(null, user);
+				}
+				var email = profile.emails ? profile.emails[0].value : null;
+
+				// set all of the facebook information in our user model
+				User.Facebook.create({
+					id: profile.id,
+					token: token,
+					name: profile.displayName,
+					email: email
+				}).then(function (user) {
+					console.log('Facebook user created: ' + profile.name.givenName);
+					return done(null, user);
+				});
+			}).catch(function (error) {
+				console.log('Facebook Oauth error: ' + error);
 				return done(error);
 			});
 		});
