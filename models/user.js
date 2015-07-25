@@ -26,6 +26,7 @@ var dirname = path.resolve(path.dirname());
 
 exports.Local = sequelize.import(path.join(dirname, 'models/local.js'));
 exports.Google = sequelize.import(path.join(dirname, 'models/google.js'));
+exports.Facebook = sequelize.import(path.join(dirname, 'models/facebook.js'));
 
 sequelize.sync().then(function () {
 	console.log('DB initialized');
