@@ -2,54 +2,66 @@
 	<h2><span class="fa fa-anchor"></span> Profile Page</h2>
 	<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 </div>
+
+<% if (!!user.local) { %>
 <div class="row">
 	<div class="col-sm-6">
 		<div class="well">
 			<h3><span class="fa fa-user"></span> Local</h3>
 			<p>
-				<strong>id</strong>: <%= (!!user.local)? user.local.id : '' %><br>
-				<strong>username</strong>: <%= (!!user.local)? user.local.username : '' %><br>
-				<strong>password</strong>: <%= (!!user.local)? user.local.password : '' %> %>
+				<strong>id</strong>: <%= user.local.id %><br>
+				<strong>username</strong>: <%= user.local.username %><br>
+				<strong>password</strong>: <%= user.local.password %> %>
 			</p>
 		</div>
 	</div>
 </div>
+<% } %>
+
+<% if (!!user.google) { %>
 <div class="row">
 	<div class="col-sm-6">
 		<div class="well">
 			<h3 class="text-danger"><span class="fa fa-google-plus"></span> Google</h3>
 			<p>
-				<strong>id</strong>: <%= (!!user.google)? user.google.id : '' %><br>
-				<strong>token</strong>: <%= (!!user.google)? user.google.token : '' %><br>
-				<strong>email</strong>: <%= (!!user.google)? user.google.email : '' %><br>
-				<strong>name</strong>: <%= (!!user.google)? user.google.name : '' %>
+				<strong>id</strong>: <%= user.google.id %><br>
+				<strong>token</strong>: <%= user.google.token %><br>
+				<strong>email</strong>: <%= user.google.email %><br>
+				<strong>name</strong>: <%= user.google.name %>
 			</p>
 		</div>
 	</div>
 </div>
+<% } %>
+
+<% if (!!user.twitter) { %>
 <div class="row">
 	<div class="col-sm-6">
 		<div class="well">
 			<h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
 			<p>
-				<strong>id</strong>: <%= (!!user.twitter)? user.twitter.id : '' %><br>
-				<strong>token</strong>: <%= (!!user.twitter)? user.twitter.token : '' %><br>
-				<strong>username</strong>: <%= (!!user.twitter)? user.twitter.username : '' %><br>
-				<strong>displayName</strong>: <%= (!!user.twitter)? user.twitter.displayName : '' %>
+				<strong>id</strong>: <%= user.twitter.id %><br>
+				<strong>token</strong>: <%= user.twitter.token %><br>
+				<strong>username</strong>: <%= user.twitter.username %><br>
+				<strong>displayName</strong>: <%= user.twitter.displayName %>
 			</p>
 		</div>
 	</div>
 </div>
+<% } %>
+
+<% if (!!user.facebook) { %>
 <div class="row">
 	<div class="col-sm-6">
 		<div class="well">
 			<h3 class="text-info"><span class="fa fa-facebook"></span> Facebook</h3>
 			<p>
-				<strong>id</strong>: <%= (!!user.facebook)? user.facebook.id : '' %><br>
-				<strong>token</strong>: <%= (!!user.facebook)? user.facebook.token : '' %><br>
-				<strong>email</strong>: <%= (!!user.facebook)? user.facebook.email : '' %><br>
-				<strong>name</strong>: <%= (!!user.facebook)? user.facebook.name : '' %> %>
+				<strong>id</strong>: <%= user.facebook.id %><br>
+				<strong>token</strong>: <%= user.facebook.token %><br>
+				<strong>email</strong>: <%= user.facebook.email %><br>
+				<strong>name</strong>: <%= user.facebook.name %> %>
 			</p>
 		</div>
 	</div>
 </div>
+<% } %>
