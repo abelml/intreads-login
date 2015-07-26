@@ -134,7 +134,7 @@ passport.use('twitter',
 					id: profile.id,
 					token: token,
 					username: profile.userName,
-					displayName: profile.displayName,
+					displayName: profile.displayName
 				}).then(function (user) {
 					console.log('Twitter user created: ' + profile.displayName);
 					return done(null, user);
