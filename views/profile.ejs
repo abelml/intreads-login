@@ -7,9 +7,9 @@
 		<div class="well">
 			<h3><span class="fa fa-user"></span> Local</h3>
 			<p>
-				<strong>id</strong>: <%= user.id %><br>
-				<strong>username</strong>: <%= user.username %><br>
-				<strong>password</strong>: <%= user.password %>
+				<strong>id</strong>: <%= (!!user.local)? user.local.id : '' %><br>
+				<strong>username</strong>: <%= (!!user.local)? user.local.username : '' %><br>
+				<strong>password</strong>: <%= (!!user.local)? user.local.password : '' %> %>
 			</p>
 		</div>
 	</div>
@@ -19,10 +19,10 @@
 		<div class="well">
 			<h3 class="text-danger"><span class="fa fa-google-plus"></span> Google</h3>
 			<p>
-				<strong>id</strong>: <%= user.id %><br>
-				<strong>token</strong>: <%= user.token %><br>
-				<strong>email</strong>: <%= user.email %><br>
-				<strong>name</strong>: <%= user.name %>
+				<strong>id</strong>: <%= (!!user.google)? user.google.id : '' %><br>
+				<strong>token</strong>: <%= (!!user.google)? user.google.token : '' %><br>
+				<strong>email</strong>: <%= (!!user.google)? user.google.email : '' %><br>
+				<strong>name</strong>: <%= (!!user.google)? user.google.name : '' %>
 			</p>
 		</div>
 	</div>
@@ -32,10 +32,10 @@
 		<div class="well">
 			<h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
 			<p>
-				<strong>id</strong>: <%= user.id %><br>
-				<strong>token</strong>: <%= user.token %><br>
-				<strong>username</strong>: <%= user.username %><br>
-				<strong>displayName</strong>: <%= user.displayName %>
+				<strong>id</strong>: <%= (!!user.twitter)? user.twitter.id : '' %><br>
+				<strong>token</strong>: <%= (!!user.twitter)? user.twitter.token : '' %><br>
+				<strong>username</strong>: <%= (!!user.twitter)? user.twitter.username : '' %><br>
+				<strong>displayName</strong>: <%= (!!user.twitter)? user.twitter.displayName : '' %>
 			</p>
 		</div>
 	</div>
@@ -45,10 +45,10 @@
 		<div class="well">
 			<h3 class="text-info"><span class="fa fa-facebook"></span> Facebook</h3>
 			<p>
-				<strong>id</strong>: <%= user.id %><br>
-				<strong>token</strong>: <%= user.token %><br>
-				<strong>email</strong>: <%= user.email %><br>
-				<strong>name</strong>: <%= user.name %>
+				<strong>id</strong>: <%= (!!user.facebook)? user.facebook.id : '' %><br>
+				<strong>token</strong>: <%= (!!user.facebook)? user.facebook.token : '' %><br>
+				<strong>email</strong>: <%= (!!user.facebook)? user.facebook.email : '' %><br>
+				<strong>name</strong>: <%= (!!user.facebook)? user.facebook.name : '' %> %>
 			</p>
 		</div>
 	</div>

@@ -1,8 +1,8 @@
 module.exports = function (sequelize, DataTypes) {
-	return sequelize.define('twitter', {
+	return sequelize.define('linkedin', {
 		id: DataTypes.UUID,
 		token: DataTypes.STRING,
 		displayName: DataTypes.STRING,
-		username: DataTypes.STRING
+		userName: DataTypes.STRING
 	});
 };
